@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Street Cleanliness Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>AI Street Cleanliness Analyzer</h1>
+
+<div class="container">
+
+<h2>Upload Street Image</h2>
+
+<form action="/predict" method="post" enctype="multipart/form-data">
+
+<input type="file" name="image" required>
+
+<br><br>
+
+<button type="submit">Analyze Image</button>
+
+</form>
+
+<br>
+
+<a href="/stats">View Statistics Dashboard</a>
+
+</div>
+
+</body>
+</html>

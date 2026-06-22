@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Statistics Dashboard</title>
+</head>
+<body>
+
+<h1>Model Statistics Dashboard</h1>
+
+<h2>Accuracy: 85.29%</h2>
+
+<ul>
+<li>ROC-AUC Score: 0.8997</li>
+<li>F1 Score (Clean): 0.85</li>
+<li>F1 Score (Dirty): 0.86</li>
+<li>Binomial Test p-value: 0.000019</li>
+<li>McNemar Test p-value: 0.006</li>
+<li>95% Confidence Interval: 73.5% - 97.1%</li>
+<li>Monte Carlo Dropout Uncertainty: 0.0946</li>
+</ul>
+
+<h2>Confusion Matrix</h2>
+
+<img src="{{ url_for('static', filename='confusion_matrix.png') }}"
+     width="500">
+
+<h2>ROC Curve</h2>
+
+<img src="{{ url_for('static', filename='roc_curve.png') }}"
+     width="500">
+
+<h2>Precision Recall Curve</h2>
+
+<img src="{{ url_for('static', filename='pr_curve.png') }}"
+     width="500">
+
+<h2>Threshold Sensitivity</h2>
+
+<img src="{{ url_for('static', filename='threshold_sensitivity.png') }}"
+     width="500">
+
+<br><br>
+
+<a href="/">Back to Home</a>
+
+</body>
+</html>
