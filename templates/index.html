@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
     <title>AI Street Cleanliness Analyzer</title>
@@ -10,23 +11,106 @@
 
 <div class="container">
 
-<h2>Upload Street Image</h2>
+```
+<h2>Upload or Capture Street Image</h2>
 
 <form action="/predict" method="post" enctype="multipart/form-data">
 
-<input type="file" name="image" required>
+    <input type="file"
+           id="imageInput"
+           name="image"
+           accept="image/*"
+           required>
 
-<br><br>
+    <br><br>
 
-<button type="submit">Analyze Image</button>
+    <button type="button" onclick="startCamera()">
+        📸 Open Camera
+    </button>
+
+    <br><br>
+
+    <video id="video"
+           width="400"
+           autoplay
+           playsinline
+           muted
+           style="display:none;border:2px solid black;">
+    </video>
+
+    <br><br>
+
+    <button type="button" onclick="capturePhoto()">
+        📷 Capture Photo
+    </button>
+
+    <br><br>
+
+    <canvas id="canvas"
+            width="400"
+            height="300"
+            style="display:none;border:2px solid black;border-radius:10px;">
+    </canvas>
+
+    <br><br>
+
+    <button type="submit">
+        Analyze Image
+    </button>
 
 </form>
 
 <br>
 
 <a href="/stats">View Statistics Dashboard</a>
+```
 
 </div>
+
+<script>
+
+function startCamera() {
+
+    async function startCamera() {
+    const video = document.getElementById("video");
+
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+            video: {
+                facingMode: { ideal: "environment" }
+            },
+            audio: false
+        });
+
+        video.srcObject = stream;
+        video.style.display = "block";
+        await video.play();
+
+    } catch (err) {
+        alert("Camera permission denied or camera is not available.");
+        console.log(err);
+    }
+}
+function capturePhoto() {
+
+    const video = document.getElementById("video");
+    const canvas = document.getElementById("canvas");
+
+    canvas.style.display = "block";
+
+    const context = canvas.getContext("2d");
+
+    context.drawImage(
+        video,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+}
+
+</script>
 
 </body>
 </html>
